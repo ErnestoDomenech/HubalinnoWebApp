@@ -3,13 +3,8 @@ using BaseLibrary.Entities;
 using Microsoft.Identity.Client;
 namespace ServerLibrary.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-            : base(options)
-        {
-        }
-
         public DbSet<Student> Students => Set<Student>();
         public DbSet<Tutor> Tutors => Set<Tutor>();
         public DbSet<Inspector> Inspectors => Set<Inspector>();
@@ -19,6 +14,8 @@ namespace ServerLibrary.Data
         public DbSet<TutorProfile> TutorProfiles => Set<TutorProfile>();
         public DbSet<Administrator> Administrators => Set<Administrator>();
         public DbSet<AdminProfile> AdminProfiles => Set<AdminProfile>();
+        public DbSet<SystemRole> SystemRoles => Set<SystemRole>();
+        public DbSet<UserRole> UserRoles => Set<UserRole>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

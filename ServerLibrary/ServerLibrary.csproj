@@ -20,11 +20,6 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.7.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.7.0" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Repositories\Contracts\" />
-    <Folder Include="Repositories\Implementations\" />
-  </ItemGroup>
 
 
   <ItemGroup>
