@@ -17,6 +17,8 @@ namespace ServerLibrary.Data
         public DbSet<StudentEnrollment> StudentEnrollments => Set<StudentEnrollment>();
         public DbSet<StudentProfile> StudentProfiles => Set<StudentProfile>();
         public DbSet<TutorProfile> TutorProfiles => Set<TutorProfile>();
+        public DbSet<Administrator> Administrators => Set<Administrator>();
+        public DbSet<AdminProfile> AdminProfiles => Set<AdminProfile>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -96,6 +98,22 @@ namespace ServerLibrary.Data
                 entity.Property(p => p.Email).HasMaxLength(100);
                 entity.Property(p => p.PhoneNumber).HasMaxLength(20);
                 entity.Property(p => p.Address).HasMaxLength(200);
+                entity.Property(p => p.CivilId).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Administrator>(entity =>
+            {
+                entity.Property(a => a.FirstName).IsRequired().HasMaxLength(100);
+                entity.Property(a => a.LastName).IsRequired().HasMaxLength(100);
+                entity.Property(a => a.UserName).IsRequired().HasMaxLength(50);
+                entity.HasOne(a => a.Profile)
+                      .WithOne(p => p.Administrator)
+                      .HasForeignKey<AdminProfile>(p => p.AdministratorId);
+            });
+            modelBuilder.Entity<AdminProfile>(entity =>
+            {
+                entity.Property(p => p.Email).HasMaxLength(100);
+                entity.Property(p => p.PhoneNumber).HasMaxLength(20);
                 entity.Property(p => p.CivilId).HasMaxLength(50);
             });
         }

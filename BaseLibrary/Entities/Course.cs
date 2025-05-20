@@ -6,7 +6,7 @@
         public string? Name { get; set; }
         public string? Description { get; set; }    
 
-        public virtual ICollection<Tutor>? Tutors { get; set; } = new List<Tutor>();
-        public virtual ICollection<StudentEnrollment>? Enrollments { get; set; } = new List<StudentEnrollment>();
+        public virtual ICollection<Tutor>? Tutors { get; set; } = [];
+        public virtual ICollection<StudentEnrollment>? Enrollments { get; set; } = [];
     }
 }
